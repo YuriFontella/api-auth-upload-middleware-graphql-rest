@@ -27,6 +27,7 @@
     "fastify-knexjs": "^1.4.0",
     "fastify-plugin": "^3.0.0",
     "fastify-rate-limit": "^5.6.0",
+    "fastify-static": "^4.2.3",
     "graphql-middleware": "^6.0.10",
     "graphql-shield": "^7.5.0",
     "mercurius": "^8.1.1",

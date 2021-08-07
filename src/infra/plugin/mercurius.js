@@ -24,6 +24,7 @@ const schemaWithMiddleware = applyMiddleware(schema, permissions)
 module.exports = fp(async (app) => {
   app.register(mercurius, {
     schema: schemaWithMiddleware,
-    graphiql: true
+    subscription: true,
+    graphiql: process.env.NODE_ENV === 'development'
   })
 }, { name: 'mercurius' })
