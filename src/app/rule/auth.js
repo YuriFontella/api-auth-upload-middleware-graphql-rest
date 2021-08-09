@@ -16,7 +16,10 @@ module.exports = (app) => {
 
         await app.QuerySession.add(token, user.id)
 
-        return { user, token }
+        return {
+          user,
+          token
+        }
       }
 
     }
