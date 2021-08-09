@@ -3,7 +3,7 @@
 module.exports = (app) => {
 
   const users = async () => {
-    return await app.RuleUser.users()
+    return await app.QueryUser.users()
   }
 
   return {

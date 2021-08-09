@@ -1,6 +1,10 @@
 type User {
+  id: ID
   name: String
   email: String
-  age: Int
-  posts: [Post]
+  password: String
+  image: String
+  role: String
+  status: Boolean
+  provider: String
 }
