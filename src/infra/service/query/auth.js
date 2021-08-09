@@ -4,10 +4,12 @@ const fp = require('fastify-plugin')
 
 module.exports = fp(async (app) => {
 
-  app.decorate('QueryUser', {
+  app.decorate('QueryAuth', {
 
-    users: async () => {
+    user: async (email) => {
       return await app.knex('users')
+        .where({ email: email, status: true })
+        .first()
     }
   })
 })
