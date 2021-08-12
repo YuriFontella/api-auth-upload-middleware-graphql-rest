@@ -1,3 +1,5 @@
 type Query {
- users: [User]
+ users: [User] @auth
 }
+
+directive @auth on OBJECT | FIELD_DEFINITION

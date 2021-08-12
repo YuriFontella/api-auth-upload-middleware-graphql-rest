@@ -4,7 +4,7 @@ const fp = require('fastify-plugin')
 
 const crypto = require('crypto')
 
-module.exports = fp(async (app) => {
+const plugin = async (app, opts) => {
   app.decorate('crypto', {
     token: () => {
       return new Promise((resolve) => {
@@ -15,7 +15,7 @@ module.exports = fp(async (app) => {
     },
 
     hash: (token) => {
-      return crypto.createHash('sha256').update(token).digest('base64')
+      return crypto.createHmac('sha512', opts.salt).update(token).digest('base64')
     },
 
     encrypt: encrypt,
@@ -44,4 +44,8 @@ module.exports = fp(async (app) => {
       .update(data, 'base64', 'utf8')
       .concat(decipher.final('utf8'))
   }
+}
+
+module.exports = fp(async (app) => {
+  app.register(fp(plugin), { salt: '@' })
 })
