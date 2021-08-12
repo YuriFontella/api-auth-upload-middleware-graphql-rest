@@ -8,5 +8,5 @@ module.exports = async (app) => {
 
   const controller = UserController(app)
 
-  app.get('/', controller.users)
+  app.get('/', { preHandler: [app.guard.role('admin')] }, controller.users)
 }
