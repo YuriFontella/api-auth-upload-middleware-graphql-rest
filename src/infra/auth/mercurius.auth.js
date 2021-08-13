@@ -18,13 +18,7 @@ module.exports = fp(async (app) => {
         throw new Error('Usuário não autenticado')
       }
 
-      const session = await context.app.knex('sessions')
-        .select('users.id', 'users.role', 'users.status')
-        .innerJoin('users', (knex) => {
-          knex.on('users.id', 'sessions.user_id').on('users.status', context.app.knex.raw('?', [true]))
-        })
-        .where({ access_token: context.app.crypto.hash(context.auth.identity), is_revoked: false })
-        .first()
+      const session = await context.app.QuerySession.verify(context.auth.identity)
 
       if (session) {
         context.current_user = session

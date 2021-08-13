@@ -8,5 +8,10 @@ module.exports = async (app) => {
 
   const controller = UserController(app)
 
-  app.get('/', { preHandler: [app.guard.role('admin')] }, controller.users)
+  app.get('/', {
+    preHandler: [
+      app.auth([app.applyPolicy]),
+      app.guard.role('admin')
+    ]
+  }, controller.users)
 }
