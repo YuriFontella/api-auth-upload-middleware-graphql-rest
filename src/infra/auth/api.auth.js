@@ -2,6 +2,8 @@
 
 const fp = require('fastify-plugin')
 
+const auth = require('fastify-auth')
+
 module.exports = fp(async (app) => {
   app
     .decorate('applyPolicy', async (request, reply) => {
@@ -30,5 +32,5 @@ module.exports = fp(async (app) => {
       }
 
     })
-    .register(require('fastify-auth'))
+    .register(auth)
 })
